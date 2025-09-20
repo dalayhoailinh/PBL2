@@ -1,0 +1,64 @@
+# Project: PBL2
+# Makefile created by Dev-C++ 5.11
+
+CPP      = g++.exe
+CC       = gcc.exe
+WINDRES  = windres.exe
+OBJ      = main.o DAL/CategoryDAL.o DAL/FoodDAL.o BLL/CategoryBLL.o BLL/FoodBLL.o DAL/DatabaseConnection.o UI/FoodUI.o UI/MainUI.o DAL/UserDAL.o BLL/UserBLL.o UI/UserUI.o UI/AdminUI.o UI/StaffUI.o
+LINKOBJ  = main.o DAL/CategoryDAL.o DAL/FoodDAL.o BLL/CategoryBLL.o BLL/FoodBLL.o DAL/DatabaseConnection.o UI/FoodUI.o UI/MainUI.o DAL/UserDAL.o BLL/UserBLL.o UI/UserUI.o UI/AdminUI.o UI/StaffUI.o
+LIBS     = -L"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib" -L"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/lib" -static-libgcc -lodbc32
+INCS     = -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include"
+CXXINCS  = -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include/c++"
+BIN      = PBL2.exe
+CXXFLAGS = $(CXXINCS) 
+CFLAGS   = $(INCS) 
+RM       = rm.exe -f
+
+.PHONY: all all-before all-after clean clean-custom
+
+all: all-before $(BIN) all-after
+
+clean: clean-custom
+	${RM} $(OBJ) $(BIN)
+
+$(BIN): $(OBJ)
+	$(CPP) $(LINKOBJ) -o $(BIN) $(LIBS)
+
+main.o: main.cpp
+	$(CPP) -c main.cpp -o main.o $(CXXFLAGS)
+
+DAL/CategoryDAL.o: DAL/CategoryDAL.cpp
+	$(CPP) -c DAL/CategoryDAL.cpp -o DAL/CategoryDAL.o $(CXXFLAGS)
+
+DAL/FoodDAL.o: DAL/FoodDAL.cpp
+	$(CPP) -c DAL/FoodDAL.cpp -o DAL/FoodDAL.o $(CXXFLAGS)
+
+BLL/CategoryBLL.o: BLL/CategoryBLL.cpp
+	$(CPP) -c BLL/CategoryBLL.cpp -o BLL/CategoryBLL.o $(CXXFLAGS)
+
+BLL/FoodBLL.o: BLL/FoodBLL.cpp
+	$(CPP) -c BLL/FoodBLL.cpp -o BLL/FoodBLL.o $(CXXFLAGS)
+
+DAL/DatabaseConnection.o: DAL/DatabaseConnection.cpp
+	$(CPP) -c DAL/DatabaseConnection.cpp -o DAL/DatabaseConnection.o $(CXXFLAGS)
+
+UI/FoodUI.o: UI/FoodUI.cpp
+	$(CPP) -c UI/FoodUI.cpp -o UI/FoodUI.o $(CXXFLAGS)
+
+UI/MainUI.o: UI/MainUI.cpp
+	$(CPP) -c UI/MainUI.cpp -o UI/MainUI.o $(CXXFLAGS)
+
+DAL/UserDAL.o: DAL/UserDAL.cpp
+	$(CPP) -c DAL/UserDAL.cpp -o DAL/UserDAL.o $(CXXFLAGS)
+
+BLL/UserBLL.o: BLL/UserBLL.cpp
+	$(CPP) -c BLL/UserBLL.cpp -o BLL/UserBLL.o $(CXXFLAGS)
+
+UI/UserUI.o: UI/UserUI.cpp
+	$(CPP) -c UI/UserUI.cpp -o UI/UserUI.o $(CXXFLAGS)
+
+UI/AdminUI.o: UI/AdminUI.cpp
+	$(CPP) -c UI/AdminUI.cpp -o UI/AdminUI.o $(CXXFLAGS)
+
+UI/StaffUI.o: UI/StaffUI.cpp
+	$(CPP) -c UI/StaffUI.cpp -o UI/StaffUI.o $(CXXFLAGS)
