@@ -1,4 +1,5 @@
 #include "UserBLL.h"
+#include "../UI/ConsoleUI.h"
 using namespace std;
 
 Result validateUserName(const string& s){
@@ -28,6 +29,12 @@ Result UserBLL::login(const string& username, const string& password){
     Result r;
     currentUser = User();
     User u;
+    if (username.empty() && password.empty()){
+    	currentUser.id = -1;
+    	r.ok = true;
+        r.message = "";
+    	return r;
+	}
     if (userDal.login(username, password, u)){
         currentUser = u;
         r.ok = true;
@@ -53,6 +60,7 @@ string UserBLL::roleToString(int roleId){
 
 void UserBLL::logOut(){
 	currentUser = User();
+	ConsoleUI::clearAll();
 }
 
 vector<User> UserBLL::getAll(){

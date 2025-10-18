@@ -4,8 +4,8 @@
 CPP      = g++.exe
 CC       = gcc.exe
 WINDRES  = windres.exe
-OBJ      = main.o DAL/CategoryDAL.o DAL/FoodDAL.o BLL/CategoryBLL.o BLL/FoodBLL.o DAL/DatabaseConnection.o UI/FoodUI.o UI/MainUI.o DAL/UserDAL.o BLL/UserBLL.o UI/UserUI.o UI/AdminUI.o UI/StaffUI.o
-LINKOBJ  = main.o DAL/CategoryDAL.o DAL/FoodDAL.o BLL/CategoryBLL.o BLL/FoodBLL.o DAL/DatabaseConnection.o UI/FoodUI.o UI/MainUI.o DAL/UserDAL.o BLL/UserBLL.o UI/UserUI.o UI/AdminUI.o UI/StaffUI.o
+OBJ      = main.o DAL/CategoryDAL.o DAL/FoodDAL.o BLL/CategoryBLL.o BLL/FoodBLL.o DAL/DatabaseConnection.o UI/FoodUI.o UI/MainUI.o DAL/UserDAL.o BLL/UserBLL.o UI/UserUI.o UI/AdminUI.o UI/StaffUI.o UI/ConsoleUI.o BLL/TableBLL.o BLL/BillBLL.o DAL/BillDAL.o DAL/TableDAL.o UI/TableUI.o UI/CategoryUI.o
+LINKOBJ  = main.o DAL/CategoryDAL.o DAL/FoodDAL.o BLL/CategoryBLL.o BLL/FoodBLL.o DAL/DatabaseConnection.o UI/FoodUI.o UI/MainUI.o DAL/UserDAL.o BLL/UserBLL.o UI/UserUI.o UI/AdminUI.o UI/StaffUI.o UI/ConsoleUI.o BLL/TableBLL.o BLL/BillBLL.o DAL/BillDAL.o DAL/TableDAL.o UI/TableUI.o UI/CategoryUI.o
 LIBS     = -L"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib" -L"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/lib" -static-libgcc -lodbc32
 INCS     = -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include"
 CXXINCS  = -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include/c++"
@@ -62,3 +62,24 @@ UI/AdminUI.o: UI/AdminUI.cpp
 
 UI/StaffUI.o: UI/StaffUI.cpp
 	$(CPP) -c UI/StaffUI.cpp -o UI/StaffUI.o $(CXXFLAGS)
+
+UI/ConsoleUI.o: UI/ConsoleUI.cpp
+	$(CPP) -c UI/ConsoleUI.cpp -o UI/ConsoleUI.o $(CXXFLAGS)
+
+BLL/TableBLL.o: BLL/TableBLL.cpp
+	$(CPP) -c BLL/TableBLL.cpp -o BLL/TableBLL.o $(CXXFLAGS)
+
+BLL/BillBLL.o: BLL/BillBLL.cpp
+	$(CPP) -c BLL/BillBLL.cpp -o BLL/BillBLL.o $(CXXFLAGS)
+
+DAL/BillDAL.o: DAL/BillDAL.cpp
+	$(CPP) -c DAL/BillDAL.cpp -o DAL/BillDAL.o $(CXXFLAGS)
+
+DAL/TableDAL.o: DAL/TableDAL.cpp
+	$(CPP) -c DAL/TableDAL.cpp -o DAL/TableDAL.o $(CXXFLAGS)
+
+UI/TableUI.o: UI/TableUI.cpp
+	$(CPP) -c UI/TableUI.cpp -o UI/TableUI.o $(CXXFLAGS)
+
+UI/CategoryUI.o: UI/CategoryUI.cpp
+	$(CPP) -c UI/CategoryUI.cpp -o UI/CategoryUI.o $(CXXFLAGS)

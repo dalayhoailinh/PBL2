@@ -4,12 +4,12 @@
 using namespace std;
 
 void UserUI::loginMenu(){
+	
     string uname, pwd;
     cout << "Nhap username: ";
     getline(cin, uname);
     cout << "Nhap password: ";
     getline(cin, pwd);
-
     Result r = userBll.login(uname, pwd);
     cout << r.message << "\n";
 }
