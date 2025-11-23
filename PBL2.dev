@@ -29,7 +29,7 @@ IncludeVersionInfo=0
 SupportXPThemes=0
 CompilerSet=0
 CompilerSettings=0000000000000000000000000
-UnitCount=45
+UnitCount=41
 
 [VersionInfo]
 Major=1
@@ -280,77 +280,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit24]
-FileName=UI\UserUI.h
-CompileCpp=1
-Folder=UI
-Compile=1
-Link=1
-Priority=1000
-OverrideBuildCmd=0
-BuildCmd=
-
-[Unit25]
-FileName=UI\UserUI.cpp
-CompileCpp=1
-Folder=UI
-Compile=1
-Link=1
-Priority=1000
-OverrideBuildCmd=0
-BuildCmd=
-
-[Unit26]
-FileName=UI\AdminUI.h
-CompileCpp=1
-Folder=UI
-Compile=1
-Link=1
-Priority=1000
-OverrideBuildCmd=0
-BuildCmd=
-
 [Unit27]
-FileName=UI\AdminUI.cpp
-CompileCpp=1
-Folder=UI
-Compile=1
-Link=1
-Priority=1000
-OverrideBuildCmd=0
-BuildCmd=
-
-[Unit28]
-FileName=UI\StaffUI.h
-CompileCpp=1
-Folder=UI
-Compile=1
-Link=1
-Priority=1000
-OverrideBuildCmd=0
-BuildCmd=
-
-[Unit29]
-FileName=UI\StaffUI.cpp
-CompileCpp=1
-Folder=UI
-Compile=1
-Link=1
-Priority=1000
-OverrideBuildCmd=0
-BuildCmd=
-
-[Unit30]
-FileName=UI\ConsoleUI.h
-CompileCpp=1
-Folder=UI
-Compile=1
-Link=1
-Priority=1000
-OverrideBuildCmd=0
-BuildCmd=
-
-[Unit31]
 FileName=UI\ConsoleUI.cpp
 CompileCpp=1
 Folder=UI
@@ -360,7 +290,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit32]
+[Unit28]
 FileName=BLL\TableBLL.h
 CompileCpp=1
 Folder=BLL
@@ -370,7 +300,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit33]
+[Unit29]
 FileName=BLL\TableBLL.cpp
 CompileCpp=1
 Folder=BLL
@@ -380,7 +310,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit34]
+[Unit30]
 FileName=BLL\BillBLL.cpp
 CompileCpp=1
 Folder=BLL
@@ -390,7 +320,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit35]
+[Unit31]
 FileName=BLL\BillBLL.h
 CompileCpp=1
 Folder=BLL
@@ -400,7 +330,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit36]
+[Unit32]
 FileName=DAL\BillDAL.cpp
 CompileCpp=1
 Folder=DAL
@@ -410,7 +340,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit37]
+[Unit33]
 FileName=DAL\BillDAL.h
 CompileCpp=1
 Folder=DAL
@@ -420,7 +350,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit38]
+[Unit34]
 FileName=Models\Bill.h
 CompileCpp=1
 Folder=Models
@@ -430,7 +360,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit39]
+[Unit35]
 FileName=Models\BillItem.h
 CompileCpp=1
 Folder=Models
@@ -440,7 +370,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit40]
+[Unit36]
 FileName=DAL\TableDAL.h
 CompileCpp=1
 Folder=DAL
@@ -450,7 +380,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit41]
+[Unit37]
 FileName=DAL\TableDAL.cpp
 CompileCpp=1
 Folder=DAL
@@ -460,7 +390,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit42]
+[Unit38]
 FileName=UI\TableUI.h
 CompileCpp=1
 Folder=UI
@@ -470,8 +400,48 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit43]
+[Unit39]
 FileName=UI\TableUI.cpp
+CompileCpp=1
+Folder=UI
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit40]
+FileName=UI\CategoryUI.cpp
+CompileCpp=1
+Folder=UI
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit41]
+FileName=UI\CategoryUI.h
+CompileCpp=1
+Folder=UI
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit42]
+FileName=UI\CategoryUI.cpp
+CompileCpp=1
+Folder=UI
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit43]
+FileName=UI\CategoryUI.h
 CompileCpp=1
 Folder=UI
 Compile=1
@@ -492,6 +462,36 @@ BuildCmd=
 
 [Unit45]
 FileName=UI\CategoryUI.h
+CompileCpp=1
+Folder=UI
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit24]
+FileName=UI\AdminUI.h
+CompileCpp=1
+Folder=UI
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit25]
+FileName=UI\AdminUI.cpp
+CompileCpp=1
+Folder=UI
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit26]
+FileName=UI\ConsoleUI.h
 CompileCpp=1
 Folder=UI
 Compile=1

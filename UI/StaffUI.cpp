@@ -1,4 +1,5 @@
 #include "StaffUI.h"
+#include "../BLL/Result.h"
 #include <iomanip>
 #include <iostream>
 using namespace std;
@@ -8,40 +9,38 @@ void StaffUI::menu(bool isAdminView) {
         cout << "\n=== Staff Menu ===\n";
         cout << "1. Chon ban\n";
         cout << "2. Xem thong tin ca nhan\n";
-        if (isAdminView)
-            cout << "3. Chuyen sang giao dien Admin\n";
-        if (isAdminView)
-			cout << "0. Quay lai\n";
-		else cout << "0. Dang xuat\n";
+        if (isAdminView) cout << "0. Quay lai\n";
+        else             cout << "0. Dang xuat\n";
         cout << "Chon: ";
+
         int c;
-        if (!(cin >> c))
-            return;
+        if (!(cin >> c)) return;
         cin.ignore();
 
-        if (c == 1)
+        if (c == 1) {
             chooseTableFlow(isAdminView);
-        else if (c == 2)
+        } else if (c == 2) {
             userUi.profileMenu();
-        else if (isAdminView && c == 3)
-            return;
-        else if (c == 0) {
+        } else if (c == 0) {
             if (!isAdminView) userBll.logOut();
             break;
-        } else
+        } else {
             cout << "Lua chon khong hop le\n";
+        }
     }
 }
 
-void StaffUI::chooseTableFlow(bool /*isAdminView*/) {
+void StaffUI::chooseTableFlow(bool /*isAdminView*/) {	
     cout << "\n=== CHON BAN ===\n";
     tableUi.listTables();
     cout << "Nhap table_id can thao tac: ";
     int tableId;
-    if (!(cin >> tableId))
-        return;
+    if (!(cin >> tableId)) return;
     cin.ignore();
-    tableOrderMenu(tableId);
+	Result r = billBll.validateTable(tableId);
+	if (r.ok) tableOrderMenu(tableId); else cout << r.message << endl;	
+	
+	
 }
 
 static void printItemsHeader() {
@@ -64,14 +63,16 @@ void StaffUI::showCurrentOrder(int tableId) {
             cout << "Ban chua co bill dang mo.\n";
             return;
         }
-        cout << "\n=== ORDER HIEN TAI (Table #" << tableId << ", BillID " << bill.id << ") ===\n";
+
+        cout << "\n=== ORDER HIEN TAI (Table #" << tableId
+             << ", BillID " << bill.id << ") ===\n";
+
         if (items.empty()) {
             cout << "Chua co mon nao.\n";
             return;
         }
-        printItemsHeader();
 
-        // C++98: thay range-for bằng for chỉ số
+        printItemsHeader();
         for (size_t i = 0; i < items.size(); ++i) {
             BillItem &it = items[i];
             cout << left
@@ -81,7 +82,8 @@ void StaffUI::showCurrentOrder(int tableId) {
                  << setw(12) << fixed << setprecision(2) << it.sub_total
                  << it.description << "\n";
         }
-        cout << string(60, '=') << "\nTong cong: " << fixed << setprecision(2) << total << "\n";
+        cout << string(60, '=')
+             << "\nTong cong: " << fixed << setprecision(2) << total << "\n";
     } catch (const exception &e) {
         cout << "Loi: " << e.what() << "\n";
     }
@@ -91,8 +93,10 @@ void StaffUI::addFoodFlow(int tableId) {
     try {
         cout << "\n=== THEM MON ===\n";
         foodUi.listFoods();
+
         int foodId, qty;
         string desc;
+
         cout << "Nhap food_id: ";
         cin >> foodId;
         cout << "Nhap so luong: ";
@@ -101,9 +105,9 @@ void StaffUI::addFoodFlow(int tableId) {
         cout << "Mo ta (co the de trong): ";
         getline(cin, desc);
 
-        billBll.addFoodToTable(tableId, foodId, qty, desc);
-        cout << ">> Da them mon vao ban " << tableId << ". Trang thai ban = 1 (dang su dung).\n";
-        showCurrentOrder(tableId);
+        Result r = billBll.addFoodToTableChecked(tableId, foodId, qty, desc);
+        cout << r.message << "\n";
+        if (r.ok) showCurrentOrder(tableId);
     } catch (const exception &e) {
         cout << "Loi khi them mon: " << e.what() << "\n";
     }
@@ -113,8 +117,10 @@ void StaffUI::updateItemFlow(int tableId) {
     try {
         cout << "\n=== CAP NHAT MON ===\n";
         showCurrentOrder(tableId);
+
         int itemId, qty;
         string desc;
+
         cout << "Nhap bill_item_id can sua: ";
         cin >> itemId;
         cout << "So luong moi: ";
@@ -123,11 +129,9 @@ void StaffUI::updateItemFlow(int tableId) {
         cout << "Mo ta moi (co the de trong): ";
         getline(cin, desc);
 
-        if (billBll.updateBillItem(itemId, qty, desc))
-            cout << ">> Da cap nhat.\n";
-        else
-            cout << ">> Khong cap nhat duoc (kiem tra ID?).\n";
-        showCurrentOrder(tableId);
+        Result r = billBll.updateBillItemChecked(itemId, qty, desc);
+        cout << r.message << "\n";
+        if (r.ok) showCurrentOrder(tableId);
     } catch (const exception &e) {
         cout << "Loi cap nhat mon: " << e.what() << "\n";
     }
@@ -137,18 +141,15 @@ void StaffUI::deleteItemFlow(int tableId) {
     try {
         cout << "\n=== XOA MON ===\n";
         showCurrentOrder(tableId);
+
         cout << "Nhap bill_item_id can xoa: ";
         int itemId;
-        if (!(cin >> itemId))
-            return;
+        if (!(cin >> itemId)) return;
         cin.ignore();
 
-        if (billBll.deleteBillItem(itemId)) {
-            cout << ">> Da xoa mon.\n";
-        } else {
-            cout << ">> Khong xoa duoc (kiem tra ID?).\n";
-        }
-        showCurrentOrder(tableId);
+        Result r = billBll.deleteBillItemChecked(itemId);
+        cout << r.message << "\n";
+        if (r.ok) showCurrentOrder(tableId);
     } catch (const exception &e) {
         cout << "Loi xoa mon: " << e.what() << "\n";
     }
@@ -158,6 +159,7 @@ void StaffUI::checkoutFlow(int tableId) {
     try {
         cout << "\n=== THANH TOAN ===\n";
         showCurrentOrder(tableId);
+
         cout << "Xac nhan thanh toan? (y/n): ";
         char cf;
         cin >> cf;
@@ -167,11 +169,8 @@ void StaffUI::checkoutFlow(int tableId) {
             return;
         }
 
-        if (billBll.checkoutTable(tableId)) {
-            cout << ">> Da thanh toan.\n";
-        } else {
-            cout << ">> Khong co bill dang mo de thanh toan.\n";
-        }
+        Result r = billBll.checkoutTableChecked(tableId);
+        cout << r.message << "\n";
     } catch (const exception &e) {
         cout << "Loi thanh toan: " << e.what() << "\n";
     }
@@ -187,25 +186,18 @@ void StaffUI::tableOrderMenu(int tableId) {
         cout << "5. Thanh toan\n";
         cout << "0. Quay lai\n";
         cout << "Chon: ";
+
         int c;
-        if (!(cin >> c))
-            return;
+        if (!(cin >> c)) return;
         cin.ignore();
 
-        if (c == 1)
-            showCurrentOrder(tableId);
-        else if (c == 2)
-            addFoodFlow(tableId);
-        else if (c == 3)
-            updateItemFlow(tableId);
-        else if (c == 4)
-            deleteItemFlow(tableId);
-        else if (c == 5) {
-            checkoutFlow(tableId);
-            break;
-        } else if (c == 0)
-            break;
-        else
-            cout << "Lua chon khong hop le\n";
+        if (c == 1)       showCurrentOrder(tableId);
+        else if (c == 2)  addFoodFlow(tableId);
+        else if (c == 3)  updateItemFlow(tableId);
+        else if (c == 4)  deleteItemFlow(tableId);
+        else if (c == 5) { checkoutFlow(tableId); break; }
+        else if (c == 0)  break;
+        else              cout << "Lua chon khong hop le\n";
     }
 }
+

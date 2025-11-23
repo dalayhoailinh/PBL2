@@ -4,11 +4,11 @@
 using namespace std;
 
 struct BillItem {
-        int id;
-        int bill_id;
-        int food_id;
-        int quantity;
-        string description;
-        double sub_total;
+    int id;
+    int bill_id;
+    int food_id;
+    int quantity;
+    string description;
+    double sub_total;
 };
 #endif
